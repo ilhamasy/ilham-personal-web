@@ -1,10 +1,9 @@
+import HomeSection from "@/components/HomeSection";
+
 export default function Home() {
   return (
     <>
-      <section
-        id="home"
-        className="min-h-screen flex items-center justify-center px-4"
-      />
+      <HomeSection />
       <section
         id="my-portfolio"
         className="min-h-screen flex items-center justify-center px-4"

@@ -42,7 +42,6 @@ export default function Footer() {
                   alt={link.name}
                   width={24}
                   height={24}
-                  className="invert"
                 />
               </a>
             ))}

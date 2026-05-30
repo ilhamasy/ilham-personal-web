@@ -16,13 +16,6 @@ const navItems: NavItem[] = [
 
 export default function Navbar() {
   const [activeSection, setActiveSection] = useState("home");
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -54,11 +47,7 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-background/80 backdrop-blur-md border-b border-card-border"
-          : "bg-transparent"
-      }`}
+      className="fixed top-0 left-0 right-0 z-50 bg-[#0a0a0f]/90 backdrop-blur-md"
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
@@ -136,7 +125,7 @@ function MobileMenu({
       </button>
 
       {open && (
-        <div className="absolute top-16 left-0 right-0 bg-background/95 backdrop-blur-md border-b border-card-border p-4">
+        <div className="absolute top-16 left-0 right-0 bg-[#0a0a0f]/95 backdrop-blur-md border-b border-card-border p-4">
           <div className="flex flex-col gap-1">
             {navItems.map((item) => (
               <button
