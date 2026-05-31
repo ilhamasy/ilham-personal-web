@@ -11,7 +11,7 @@ export default function ScrollDownArrow({ targetId }: { targetId: string }) {
   return (
     <button
       onClick={handleClick}
-      className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce cursor-pointer text-muted hover:text-accent transition-colors"
+      className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce cursor-pointer text-muted hover:text-accent transition-colors p-2"
       aria-label={`Scroll to ${targetId}`}
     >
       <svg

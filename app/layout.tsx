@@ -45,7 +45,7 @@ export default function RootLayout({
       lang="en"
       className={`${robotoMono.variable} ${roboto.variable} ${ubuntu.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-background text-foreground font-mono">
+      <body className="min-h-full flex flex-col bg-background text-foreground font-mono overflow-x-hidden">
         <BlobBackground />
         <Navbar />
         <main className="flex-1">{children}</main>

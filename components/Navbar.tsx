@@ -98,7 +98,7 @@ function MobileMenu({
     <div className="sm:hidden">
       <button
         onClick={() => setOpen(!open)}
-        className="p-2 rounded-lg text-muted hover:text-foreground transition-colors cursor-pointer"
+        className="p-3 rounded-lg text-muted hover:text-foreground transition-colors cursor-pointer"
         aria-label="Toggle menu"
       >
         <svg
