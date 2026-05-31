@@ -55,6 +55,7 @@ export default function Navbar() {
           <button
             onClick={() => scrollTo("home")}
             className="text-lg font-bold text-foreground hover:text-accent transition-colors cursor-pointer"
+            aria-label="Ilham Asyari, go to home"
           >
             Ilham Asyari
           </button>
@@ -64,6 +65,7 @@ export default function Navbar() {
               <button
                 key={item.id}
                 onClick={() => scrollTo(item.id)}
+                aria-current={activeSection === item.id ? "page" : undefined}
                 className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors cursor-pointer ${
                   activeSection === item.id
                     ? "text-accent"

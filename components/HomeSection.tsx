@@ -51,6 +51,7 @@ export default function HomeSection() {
             fill
             className="object-contain"
             priority
+            sizes="(max-width: 768px) 320px, 50vw"
           />
         </div>
         <ScrollDownArrow targetId="about" />

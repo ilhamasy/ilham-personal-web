@@ -39,6 +39,7 @@ export default function AboutSection() {
               alt="Ilham Asyari"
               fill
               className="object-cover"
+              sizes="(max-width: 768px) 192px, 256px"
             />
           </div>
 
