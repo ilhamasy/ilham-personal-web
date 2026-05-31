@@ -5,20 +5,20 @@ import HomeSection from "./HomeSection";
 describe("HomeSection", () => {
   it("renders full name", () => {
     render(<HomeSection />);
-    expect(screen.getByText("Ilham Asyari")).toBeInTheDocument();
+    expect(screen.getByText(/Ilham Asyari/i)).toBeInTheDocument();
   });
 
   it("renders role title", () => {
     render(<HomeSection />);
     expect(
-      screen.getByText("Web Developer / IT Business Analyst")
+      screen.getByText("Full Stack Developer & IT Business Analyst")
     ).toBeInTheDocument();
   });
 
   it("renders about me text", () => {
     render(<HomeSection />);
     expect(
-      screen.getByText(/Passionate developer and IT business analyst/)
+      screen.getByText(/Dedicated and results oriented/)
     ).toBeInTheDocument();
   });
 

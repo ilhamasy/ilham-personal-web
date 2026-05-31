@@ -1,13 +1,11 @@
 import HomeSection from "@/components/HomeSection";
+import PortfolioSection from "@/components/PortfolioSection";
 
 export default function Home() {
   return (
     <>
       <HomeSection />
-      <section
-        id="my-portfolio"
-        className="min-h-screen flex items-center justify-center px-4"
-      />
+      <PortfolioSection />
       <section
         id="tech-stack"
         className="min-h-screen flex items-center justify-center px-4"

@@ -34,7 +34,7 @@ export default function HomeSection() {
             <p className="text-lg sm:text-xl text-accent font-medium">
               {SITE_CONFIG.role}
             </p>
-            <p className="text-xs sm:text-sm text-muted max-w-xl leading-relaxed">
+            <p className="text-xs sm:text-sm text-muted max-w-xl leading-relaxed font-sans">
               {SITE_CONFIG.about}
             </p>
           </div>

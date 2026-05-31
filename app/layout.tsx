@@ -11,6 +11,12 @@ const robotoMono = localFont({
   display: "swap",
 });
 
+const roboto = localFont({
+  src: "../assets/Roboto/Roboto-VariableFont_wdth,wght.ttf",
+  variable: "--font-roboto",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: "Ilham Asyari — Personal Portfolio",
   description:
@@ -31,7 +37,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${robotoMono.variable} h-full antialiased`}
+      className={`${robotoMono.variable} ${roboto.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground font-mono">
         <BlobBackground />
