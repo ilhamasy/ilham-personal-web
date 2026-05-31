@@ -7,7 +7,7 @@ import ScrollDownArrow from "./ScrollDownArrow";
 export default function HomeSection() {
   const scrollToAbout = () => {
     const el = document.getElementById("about");
-    if (el) el.scrollIntoView({ behavior: "smooth" });
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
   return (
