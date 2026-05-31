@@ -1,74 +1,59 @@
+"use client";
+
 import Image from "next/image";
 import { SITE_CONFIG } from "@/lib/constants";
-
-const socialLinks = [
-  {
-    name: "Instagram",
-    url: SITE_CONFIG.socials.instagram,
-    icon: "/assets/instagram.png",
-  },
-  {
-    name: "LinkedIn",
-    url: SITE_CONFIG.socials.linkedin,
-    icon: "/assets/linkedin.png",
-  },
-  {
-    name: "GitHub",
-    url: SITE_CONFIG.socials.github,
-    icon: "/assets/github.png",
-  },
-];
+import ScrollDownArrow from "./ScrollDownArrow";
 
 export default function HomeSection() {
+  const scrollToAbout = () => {
+    const el = document.getElementById("about");
+    if (el) el.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <section
       id="home"
-      className="min-h-screen flex items-center justify-center px-4 pt-20 pb-16"
+      className="min-h-screen flex items-center justify-center px-4 pt-20 pb-16 relative"
     >
-      <div className="max-w-5xl mx-auto w-full flex flex-col items-center gap-10">
-        <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16 w-full">
-          <div className="flex flex-col gap-4 text-center md:text-left md:flex-1">
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight">
-              {SITE_CONFIG.name}
-            </h1>
-            <p className="text-lg sm:text-xl text-accent font-medium">
-              {SITE_CONFIG.role}
-            </p>
-            <p className="text-xs sm:text-sm text-muted max-w-xl leading-relaxed font-sans">
-              {SITE_CONFIG.about}
-            </p>
-          </div>
-
-          <div className="relative w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 rounded-full overflow-hidden border-2 border-accent/30 ring-4 ring-accent/10 shrink-0">
-            <Image
-              src="/assets/aal_hero.jpeg"
-              alt="Ilham Asyari"
-              fill
-              className="object-cover"
-              priority
-            />
-          </div>
-        </div>
-
-        <div className="flex items-center gap-6">
-          {socialLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="opacity-70 hover:opacity-100 hover:scale-110 transition-all duration-200"
-              aria-label={`Visit ${link.name} profile`}
+      <div className="max-w-6xl mx-auto w-full flex flex-col md:flex-row items-center">
+        <div className="flex flex-col gap-6 text-center md:text-left md:w-1/2 py-8">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight">
+            {SITE_CONFIG.name}
+          </h1>
+            <p className="text-lg sm:text-xl text-accent font-medium font-ubuntu">
+            {SITE_CONFIG.role}
+          </p>
+          <button
+            onClick={scrollToAbout}
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-accent text-white font-medium text-sm hover:bg-accent-hover transition-colors cursor-pointer mx-auto md:mx-0 w-fit"
+          >
+            More about me
+            <svg
+              className="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
             >
-              <Image
-                src={link.icon}
-                alt={link.name}
-                width={28}
-                height={28}
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M19 14l-7 7m0 0l-7-7m7 7V3"
               />
-            </a>
-          ))}
+            </svg>
+          </button>
         </div>
+
+        <div className="relative w-full md:w-1/2 aspect-square overflow-hidden shrink-0">
+          <Image
+            src="/assets/ilham_hero_updated.png"
+            alt="Ilham Asyari"
+            fill
+            className="object-contain"
+            priority
+          />
+        </div>
+        <ScrollDownArrow targetId="about" />
       </div>
     </section>
   );

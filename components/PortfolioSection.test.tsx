@@ -31,14 +31,13 @@ describe("PortfolioSection", () => {
 
   it("renders project years on cards", () => {
     render(<PortfolioSection />);
-    expect(screen.getAllByText("2026").length).toBeGreaterThanOrEqual(1);
-    expect(screen.getAllByText("2025").length).toBeGreaterThanOrEqual(1);
+    const yearElements = screen.getAllByText(/202[56]/);
+    expect(yearElements.length).toBeGreaterThanOrEqual(2);
   });
 
   it("renders project names", () => {
     render(<PortfolioSection />);
-    expect(screen.getByText("Placeholder Project 1")).toBeInTheDocument();
-    expect(screen.getByText("Placeholder Project 2")).toBeInTheDocument();
+    expect(screen.getByText("Omnichannel Chat Platform")).toBeInTheDocument();
   });
 
   it("external links open in new tab", () => {

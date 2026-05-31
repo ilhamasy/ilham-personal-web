@@ -10,6 +10,7 @@
   --color-muted: var(--muted);
   --font-mono: var(--font-roboto-mono);
   --font-sans: var(--font-roboto);
+  --font-ubuntu: var(--font-ubuntu);
 }
 
 :root {
