@@ -27,14 +27,28 @@ const ubuntu = localFont({
 export const metadata: Metadata = {
   title: "Ilham Asyari — Personal Portfolio",
   description:
-    "Professional portfolio of Ilham Asyari — Web Developer & IT Business Analyst",
+    "Professional portfolio of Ilham Asyari — Full Stack Developer & IT Business Analyst",
   manifest: "/manifest.json",
   themeColor: "#f97316",
+  metadataBase: new URL("https://ilhamasy.dev"),
   openGraph: {
     title: "Ilham Asyari — Personal Portfolio",
     description:
-      "Professional portfolio of Ilham Asyari — Web Developer & IT Business Analyst",
+      "Professional portfolio of Ilham Asyari — Full Stack Developer & IT Business Analyst",
     type: "website",
+    siteName: "Ilham Asyari Portfolio",
+    images: [{ url: "/assets/aal_hero.jpeg", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Ilham Asyari — Personal Portfolio",
+    description:
+      "Professional portfolio of Ilham Asyari — Full Stack Developer & IT Business Analyst",
+    images: ["/assets/aal_hero.jpeg"],
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 
@@ -49,6 +63,23 @@ export default function RootLayout({
       className={`${robotoMono.variable} ${roboto.variable} ${ubuntu.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground font-mono overflow-x-hidden">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              name: "Ilham Asyari",
+              jobTitle: "Full Stack Developer & IT Business Analyst",
+              url: "https://ilhamasy.dev",
+              sameAs: [
+                "https://instagram.com/ilhamasy",
+                "https://linkedin.com/in/ilhamasy",
+                "https://github.com/ilhamasy",
+              ],
+            }),
+          }}
+        />
         <BlobBackground />
         <Navbar />
         <main className="flex-1">{children}</main>
