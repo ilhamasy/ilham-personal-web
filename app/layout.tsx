@@ -17,6 +17,12 @@ const roboto = localFont({
   display: "swap",
 });
 
+const ubuntu = localFont({
+  src: "../assets/Roboto,Ubuntu/Ubuntu/Ubuntu-Regular.ttf",
+  variable: "--font-ubuntu",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: "Ilham Asyari — Personal Portfolio",
   description:
@@ -37,7 +43,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${robotoMono.variable} ${roboto.variable} h-full antialiased`}
+      className={`${robotoMono.variable} ${roboto.variable} ${ubuntu.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground font-mono">
         <BlobBackground />

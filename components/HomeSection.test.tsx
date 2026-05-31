@@ -15,44 +15,21 @@ describe("HomeSection", () => {
     ).toBeInTheDocument();
   });
 
-  it("renders about me text", () => {
+  it("renders More about me button", () => {
     render(<HomeSection />);
-    expect(
-      screen.getByText(/Dedicated and results oriented/)
-    ).toBeInTheDocument();
+    expect(screen.getByText(/More about me/i)).toBeInTheDocument();
   });
 
-  it("renders social link icons", () => {
-    render(<HomeSection />);
-    expect(
-      screen.getByLabelText("Visit Instagram profile")
-    ).toBeInTheDocument();
-    expect(
-      screen.getByLabelText("Visit LinkedIn profile")
-    ).toBeInTheDocument();
-    expect(
-      screen.getByLabelText("Visit GitHub profile")
-    ).toBeInTheDocument();
-  });
-
-  it("social links open in new tab", () => {
-    render(<HomeSection />);
-    const links = screen.getAllByRole("link");
-    links.forEach((link) => {
-      expect(link).toHaveAttribute("target", "_blank");
-      expect(link).toHaveAttribute("rel", "noopener noreferrer");
-    });
-  });
-
-  it("renders hero photo with alt text", () => {
+  it("renders hero photo without circle styling", () => {
     render(<HomeSection />);
     const photo = screen.getByAltText("Ilham Asyari");
     expect(photo).toBeInTheDocument();
+    const parent = photo.parentElement;
+    expect(parent?.className).not.toContain("rounded-full");
   });
 
   it("has home section id", () => {
     render(<HomeSection />);
-    const section = document.getElementById("home");
-    expect(section).toBeInTheDocument();
+    expect(document.getElementById("home")).toBeInTheDocument();
   });
 });

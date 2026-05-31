@@ -1,10 +1,12 @@
 import HomeSection from "@/components/HomeSection";
+import AboutSection from "@/components/AboutSection";
 import PortfolioSection from "@/components/PortfolioSection";
 
 export default function Home() {
   return (
     <>
       <HomeSection />
+      <AboutSection />
       <PortfolioSection />
       <section
         id="tech-stack"
