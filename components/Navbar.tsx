@@ -28,7 +28,7 @@ export default function Navbar() {
           setActiveSection(visible[0].target.id);
         }
       },
-      { rootMargin: "-40% 0px -60% 0px", threshold: 0 }
+      { rootMargin: "-30% 0px -30% 0px", threshold: 0 }
     );
 
     navItems.forEach(({ id }) => {

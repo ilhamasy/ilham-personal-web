@@ -3,7 +3,9 @@
 export default function ScrollDownArrow({ targetId }: { targetId: string }) {
   const handleClick = () => {
     const el = document.getElementById(targetId);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
   };
 
   return (
