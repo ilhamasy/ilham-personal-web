@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import BlobBackground from "@/components/BlobBackground";
+import PwaRegister from "@/components/PwaRegister";
 
 const robotoMono = localFont({
   src: "../assets/Roboto_Mono/RobotoMono-VariableFont_wght.ttf",
@@ -27,6 +28,8 @@ export const metadata: Metadata = {
   title: "Ilham Asyari — Personal Portfolio",
   description:
     "Professional portfolio of Ilham Asyari — Web Developer & IT Business Analyst",
+  manifest: "/manifest.json",
+  themeColor: "#f97316",
   openGraph: {
     title: "Ilham Asyari — Personal Portfolio",
     description:
@@ -50,6 +53,7 @@ export default function RootLayout({
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />
+        <PwaRegister />
       </body>
     </html>
   );
