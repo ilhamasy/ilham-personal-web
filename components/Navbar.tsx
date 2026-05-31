@@ -28,7 +28,7 @@ export default function Navbar() {
           setActiveSection(visible[0].target.id);
         }
       },
-      { rootMargin: "-30% 0px -30% 0px", threshold: 0 }
+      { rootMargin: "-10% 0px -80% 0px", threshold: 0 }
     );
 
     navItems.forEach(({ id }) => {
@@ -48,7 +48,7 @@ export default function Navbar() {
 
   return (
     <nav
-      className="fixed top-0 left-0 right-0 z-50 bg-[#0a0a0f]/90 backdrop-blur-md"
+      className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-b from-[#0a0a0f]/95 via-[#0a0a0f]/80 to-[#0a0a0f]/60 backdrop-blur-xl border-b border-white/[0.06] shadow-[0_1px_3px_rgba(0,0,0,0.5)]"
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
@@ -126,7 +126,7 @@ function MobileMenu({
       </button>
 
       {open && (
-        <div className="absolute top-16 left-0 right-0 bg-[#0a0a0f]/95 backdrop-blur-md border-b border-card-border p-4">
+        <div className="absolute top-16 left-0 right-0 bg-[#0a0a0f]/95 backdrop-blur-xl border-b border-white/[0.06] p-4">
           <div className="flex flex-col gap-1">
             {navItems.map((item) => (
               <button
