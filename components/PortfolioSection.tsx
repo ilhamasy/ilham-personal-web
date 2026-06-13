@@ -21,7 +21,7 @@ function ProjectCard({ project }: { project: Project }) {
       onMouseEnter={() => setExpanded(true)}
       onMouseLeave={() => setExpanded(false)}
     >
-      <div className="bg-card border border-card-border rounded-xl p-5 hover:border-accent/30 transition-colors cursor-pointer">
+      <div className="bg-[#1a1a19] border border-zinc-800 rounded-xl p-5 hover:border-zinc-600 transition-colors cursor-pointer">
         <p className="font-semibold text-sm">{project.name}</p>
         <div className="flex items-center gap-2 mt-2">
           <span className="text-xs px-2 py-0.5 rounded-full bg-accent/10 text-accent">
