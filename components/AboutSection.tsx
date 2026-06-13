@@ -37,7 +37,7 @@ export default function AboutSection() {
       id="about"
       className="flex items-center justify-center px-4 py-24 relative"
     >
-      <div className="max-w-6xl mx-auto w-full -mt-24">
+      <div className="max-w-6xl mx-auto w-full -mt-48">
         <div className="border border-zinc-800 rounded-3xl p-8 md:p-12" style={{ backgroundColor: "rgb(15, 15, 14)" }}>
           <div className="flex flex-col lg:flex-row gap-12 lg:gap-20">
             <div className="lg:w-1/2 flex flex-col gap-6">
