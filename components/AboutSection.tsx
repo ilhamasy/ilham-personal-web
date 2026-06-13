@@ -1,30 +1,34 @@
-import Image from "next/image";
-import { metrics } from "@/lib/projects";
+import {
+  Briefcase,
+  Folder,
+  Building2,
+  Users,
+  ArrowUpRight,
+} from "lucide-react";
 import ScrollDownArrow from "./ScrollDownArrow";
 
-const aboutCards = [
+const statCards = [
   {
-    title: "4+ Years Experience",
-    description: "As IT Business Analyst driving digital transformation",
+    icon: Briefcase,
+    value: "4+",
+    label: "Years Experience",
   },
   {
-    title: "Banking & Contact Center",
-    description: "Experience in Banking & Contact Center Systems",
+    icon: Folder,
+    value: "7+",
+    label: "Enterprise Projects",
   },
   {
-    title: "Full-Stack Development",
-    description: "Using React, Next.js, Go, and Node.js",
+    icon: Building2,
+    value: "Banking & Fintech",
+    label: "Industry Experience",
+    isTextValue: true,
   },
   {
-    title: "Requirements & Delivery",
-    description: "Experience managing requirements, integration and delivery",
+    icon: Users,
+    value: "20+",
+    label: "Stakeholders Collaborated",
   },
-];
-
-const metricItems = [
-  { label: "Years of Experience", value: metrics.yearsOfExperience },
-  { label: "Total Projects", value: metrics.totalProjects },
-  { label: "Client Projects", value: metrics.clientProjects },
 ];
 
 export default function AboutSection() {
@@ -33,52 +37,56 @@ export default function AboutSection() {
       id="about"
       className="min-h-screen flex items-center justify-center px-4 py-24 relative"
     >
-      <div className="max-w-5xl mx-auto w-full flex flex-col items-center gap-12">
-        <div className="text-center">
-          <p className="text-xs text-muted uppercase tracking-widest mb-2">
-            — About Me
-          </p>
-          <h2 className="text-2xl sm:text-3xl font-bold">
-            Turning Business Needs Into Digital Solutions
-          </h2>
-        </div>
-
-        <div className="w-full flex flex-col md:flex-row items-center gap-8 md:gap-16">
-          <div className="relative w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 rounded-full overflow-hidden border-2 border-white/20 ring-4 ring-white/5 shrink-0">
-            <Image
-              src="/assets/aal_hero.jpeg"
-              alt="Ilham Asyari"
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 192px, 256px"
-            />
-          </div>
-
-          <div className="flex flex-col gap-4 md:flex-1">
-            {aboutCards.map((card) => (
-              <div
-                key={card.title}
-                className="bg-card border border-card-border rounded-lg p-4"
-              >
-                <p className="font-semibold text-sm">{card.title}</p>
-                <p className="text-xs text-muted mt-1">{card.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full max-w-2xl">
-          {metricItems.map((item) => (
-            <div
-              key={item.label}
-              className="bg-card border border-card-border rounded-xl p-6 text-center"
-            >
-              <p className="text-3xl sm:text-4xl font-bold text-accent">
-                {item.value}+
+      <div className="max-w-6xl mx-auto w-full">
+        <div className="border border-zinc-800 bg-[#111111]/30 rounded-3xl p-8 md:p-12">
+          <div className="flex flex-col lg:flex-row gap-12 lg:gap-20">
+            <div className="lg:w-1/2 flex flex-col gap-6">
+              <p className="text-xs text-zinc-500 uppercase tracking-widest">
+                — ABOUT ME
               </p>
-              <p className="text-xs sm:text-sm text-muted mt-1">{item.label}</p>
+              <h2 className="text-2xl sm:text-3xl font-bold text-white">
+                Turning Business Needs Into Digital Solutions
+              </h2>
+              <p className="text-sm sm:text-base text-zinc-400 leading-relaxed">
+                With 4+ years of experience, I help organizations design and
+                deliver scalable digital solutions. As an IT Business Analyst
+                and Full Stack Developer, I work across the business and
+                technology spectrum — translating complex requirements into
+                clear, feasible, and scalable implementations for banking,
+                contact center, CRM, and customer engagement platforms.
+              </p>
+              <a
+                href="#my-portfolio"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-zinc-800 text-sm text-zinc-300 hover:border-zinc-600 hover:text-white transition-colors w-fit"
+              >
+                More About Me
+                <ArrowUpRight className="w-4 h-4" />
+              </a>
             </div>
-          ))}
+
+            <div className="lg:w-1/2 grid grid-cols-2 gap-4">
+              {statCards.map((card) => (
+                <div
+                  key={card.label}
+                  className="bg-zinc-900/50 rounded-xl p-6 flex flex-col gap-3"
+                >
+                  <card.icon className="w-6 h-6 text-white/60" />
+                  <div>
+                    <p
+                      className={
+                        card.isTextValue
+                          ? "text-base font-bold text-white"
+                          : "text-3xl font-bold text-white"
+                      }
+                    >
+                      {card.value}
+                    </p>
+                    <p className="text-xs text-zinc-500 mt-1">{card.label}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
         <ScrollDownArrow targetId="my-portfolio" />
       </div>

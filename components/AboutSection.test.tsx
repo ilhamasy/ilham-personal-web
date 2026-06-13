@@ -8,51 +8,52 @@ describe("AboutSection", () => {
     expect(document.getElementById("about")).toBeInTheDocument();
   });
 
-  it("renders about title", () => {
+  it("renders about label", () => {
+    render(<AboutSection />);
+    expect(screen.getByText("— ABOUT ME")).toBeInTheDocument();
+  });
+
+  it("renders heading", () => {
     render(<AboutSection />);
     expect(
       screen.getByText("Turning Business Needs Into Digital Solutions")
     ).toBeInTheDocument();
   });
 
-  it("renders about subheading", () => {
+  it("renders description paragraph", () => {
     render(<AboutSection />);
-    expect(screen.getByText("— About Me")).toBeInTheDocument();
+    expect(
+      screen.getByText(/4\+ years of experience/i)
+    ).toBeInTheDocument();
   });
 
-  it("renders experience card", () => {
+  it("renders More About Me button", () => {
     render(<AboutSection />);
-    expect(screen.getByText("4+ Years Experience")).toBeInTheDocument();
+    expect(screen.getByText("More About Me")).toBeInTheDocument();
   });
 
-  it("renders banking card", () => {
+  it("renders years experience stat", () => {
     render(<AboutSection />);
-    expect(screen.getByText("Banking & Contact Center")).toBeInTheDocument();
+    expect(screen.getByText("4+")).toBeInTheDocument();
+    expect(screen.getByText("Years Experience")).toBeInTheDocument();
   });
 
-  it("renders full-stack card", () => {
+  it("renders enterprise projects stat", () => {
     render(<AboutSection />);
-    expect(screen.getByText("Full-Stack Development")).toBeInTheDocument();
+    expect(screen.getByText("7+")).toBeInTheDocument();
+    expect(screen.getByText("Enterprise Projects")).toBeInTheDocument();
   });
 
-  it("renders requirements card", () => {
+  it("renders industry experience stat", () => {
     render(<AboutSection />);
-    expect(screen.getByText("Requirements & Delivery")).toBeInTheDocument();
+    expect(screen.getByText("Banking & Fintech")).toBeInTheDocument();
+    expect(screen.getByText("Industry Experience")).toBeInTheDocument();
   });
 
-  it("renders hero photo with circle", () => {
+  it("renders stakeholders stat", () => {
     render(<AboutSection />);
-    const photo = screen.getByAltText("Ilham Asyari");
-    expect(photo).toBeInTheDocument();
-    const parent = photo.parentElement;
-    expect(parent?.className).toContain("rounded-full");
-  });
-
-  it("renders metrics", () => {
-    render(<AboutSection />);
-    expect(screen.getByText("Years of Experience")).toBeInTheDocument();
-    expect(screen.getByText("Total Projects")).toBeInTheDocument();
-    expect(screen.getByText("Client Projects")).toBeInTheDocument();
+    expect(screen.getByText("20+")).toBeInTheDocument();
+    expect(screen.getByText("Stakeholders Collaborated")).toBeInTheDocument();
   });
 
   it("does not render social links", () => {

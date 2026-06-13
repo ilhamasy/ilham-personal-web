@@ -22,8 +22,8 @@
 :root {
   --background: #0a0a0f;
   --foreground: #ededed;
-  --accent: #f97316;
-  --accent-hover: #fb923c;
+  --accent: #ffffff;
+  --accent-hover: #e5e5e5;
   --card: rgba(255, 255, 255, 0.04);
   --card-border: rgba(255, 255, 255, 0.08);
   --muted: #8c8c8c;
