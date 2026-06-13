@@ -8,11 +8,11 @@ describe("HomeSection", () => {
     expect(screen.getByText(/Ilham Asyari/i)).toBeInTheDocument();
   });
 
-  it("renders role title", () => {
+  it("renders role title with typing animation", () => {
     render(<HomeSection />);
-    expect(
-      screen.getByText("Full Stack Developer & IT Business Analyst")
-    ).toBeInTheDocument();
+    const cursorSpan = document.querySelector(".animate-blink-cursor");
+    expect(cursorSpan).toBeInTheDocument();
+    expect(cursorSpan?.textContent).toBe("|");
   });
 
   it("renders More about me button", () => {
