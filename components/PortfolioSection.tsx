@@ -1,37 +1,59 @@
 "use client";
 
-import { useState } from "react";
-import { projects, groupProjectsByYear } from "@/lib/projects";
+import { useMemo, useState } from "react";
+import { projects } from "@/lib/projects";
 import ScrollDownArrow from "./ScrollDownArrow";
 
-const yearGroups = groupProjectsByYear(projects);
+type Project = (typeof projects)[number];
 
-function ProjectCard({ project }: { project: (typeof projects)[number] }) {
+function groupByLatestYear(list: Project[]) {
+  const map = new Map<number, Project[]>();
+  for (const p of list) {
+    const latest = Math.max(...p.years);
+    const group = map.get(latest) ?? [];
+    group.push(p);
+    map.set(latest, group);
+  }
+  return Array.from(map.entries()).sort(([a], [b]) => b - a);
+}
+
+function formatYears(years: number[]) {
+  const sorted = [...years].sort((a, b) => a - b);
+  if (sorted.length === 1) return `${sorted[0]}`;
+  return `${sorted[0]} — ${sorted[sorted.length - 1]}`;
+}
+
+function ProjectCard({ project }: { project: Project }) {
   const [expanded, setExpanded] = useState(false);
 
   return (
     <div
-      className="bg-card border border-card-border rounded-xl p-5 hover:border-accent/30 transition-colors cursor-pointer"
+      className="relative"
       onMouseEnter={() => setExpanded(true)}
       onMouseLeave={() => setExpanded(false)}
     >
-      <p className="font-semibold text-sm">{project.name}</p>
-      <span className="text-xs px-2 py-0.5 rounded-full bg-accent/10 text-accent mt-2 inline-block">
-        {project.role}
-      </span>
+      <div className="bg-card border border-card-border rounded-xl p-5 hover:border-accent/30 transition-colors cursor-pointer">
+        <p className="font-semibold text-sm">{project.name}</p>
+        <div className="flex items-center gap-2 mt-2">
+          <span className="text-xs px-2 py-0.5 rounded-full bg-accent/10 text-accent">
+            {project.role}
+          </span>
+          <span className="text-xs text-muted">{formatYears(project.years)}</span>
+        </div>
+      </div>
 
       {expanded && (
-        <div className="mt-4 space-y-3 text-xs text-muted leading-relaxed">
+        <div className="absolute left-0 right-0 top-full mt-2 z-20 bg-[#1a1a19] border border-zinc-700 rounded-xl p-5 shadow-xl space-y-3 text-xs text-zinc-400 leading-relaxed">
           <div>
-            <p className="text-foreground font-medium mb-1">Problem</p>
+            <p className="text-white font-medium mb-1">Problem</p>
             <p>{project.problem}</p>
           </div>
           <div>
-            <p className="text-foreground font-medium mb-1">Solution</p>
+            <p className="text-white font-medium mb-1">Solution</p>
             <p>{project.solution}</p>
           </div>
           <div>
-            <p className="text-foreground font-medium mb-1">Result</p>
+            <p className="text-white font-medium mb-1">Result</p>
             <p>{project.result}</p>
           </div>
         </div>
@@ -41,6 +63,8 @@ function ProjectCard({ project }: { project: (typeof projects)[number] }) {
 }
 
 export default function PortfolioSection() {
+  const yearGroups = useMemo(() => groupByLatestYear(projects), []);
+
   return (
     <section id="my-portfolio" className="min-h-screen px-4 py-24 relative">
       <div className="max-w-5xl mx-auto">
@@ -61,7 +85,7 @@ export default function PortfolioSection() {
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 {yearProjects.map((project, i) => (
                   <ProjectCard
-                    key={`${project.name}-${project.role}-${year}-${i}`}
+                    key={`${project.name}-${project.role}-${i}`}
                     project={project}
                   />
                 ))}

@@ -22,7 +22,6 @@ describe("PortfolioSection", () => {
 
   it("renders project names", () => {
     render(<PortfolioSection />);
-    const elements = screen.getAllByText("Omnichannel Chat Platform");
-    expect(elements.length).toBeGreaterThanOrEqual(1);
+    expect(screen.getByText("Omnichannel Chat Platform")).toBeInTheDocument();
   });
 });

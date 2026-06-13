@@ -98,15 +98,3 @@ export const projects: Project[] = [
       "Strengthened security controls. Reduced identity fraud risks.",
   },
 ];
-
-export function groupProjectsByYear(projects: Project[]) {
-  const map = new Map<number, Project[]>();
-  for (const p of projects) {
-    for (const year of p.years) {
-      const list = map.get(year) ?? [];
-      list.push(p);
-      map.set(year, list);
-    }
-  }
-  return Array.from(map.entries()).sort(([a], [b]) => b - a);
-}
