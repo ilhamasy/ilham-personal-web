@@ -1,21 +1,10 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { projects } from "@/lib/projects";
 import ScrollDownArrow from "./ScrollDownArrow";
 
 type Project = (typeof projects)[number];
-
-function groupByLatestYear(list: Project[]) {
-  const map = new Map<number, Project[]>();
-  for (const p of list) {
-    const latest = Math.max(...p.years);
-    const group = map.get(latest) ?? [];
-    group.push(p);
-    map.set(latest, group);
-  }
-  return Array.from(map.entries()).sort(([a], [b]) => b - a);
-}
 
 function formatYears(years: number[]) {
   const sorted = [...years].sort((a, b) => a - b);
@@ -62,9 +51,11 @@ function ProjectCard({ project }: { project: Project }) {
   );
 }
 
-export default function PortfolioSection() {
-  const yearGroups = useMemo(() => groupByLatestYear(projects), []);
+const sortedProjects = [...projects].sort(
+  (a, b) => Math.max(...b.years) - Math.max(...a.years)
+);
 
+export default function PortfolioSection() {
   return (
     <section id="my-portfolio" className="min-h-screen px-4 py-24 relative">
       <div className="max-w-5xl mx-auto">
@@ -72,25 +63,12 @@ export default function PortfolioSection() {
           Featured Project
         </h2>
 
-        <div className="flex flex-col gap-16">
-          {yearGroups.map(([year, yearProjects]) => (
-            <div key={year}>
-              <div className="flex items-center gap-4 mb-6">
-                <span className="text-sm font-bold text-accent tracking-wider">
-                  {year}
-                </span>
-                <div className="flex-1 h-px bg-card-border" />
-              </div>
-
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                {yearProjects.map((project, i) => (
-                  <ProjectCard
-                    key={`${project.name}-${project.role}-${i}`}
-                    project={project}
-                  />
-                ))}
-              </div>
-            </div>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {sortedProjects.map((project, i) => (
+            <ProjectCard
+              key={`${project.name}-${project.role}-${i}`}
+              project={project}
+            />
           ))}
         </div>
         <ScrollDownArrow targetId="tech-stack" />
