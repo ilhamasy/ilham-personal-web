@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import ScrollDownArrow from "./ScrollDownArrow";
 import { TypingAnimation } from "./TypingAnimation";
 
 export default function HomeSection() {
@@ -13,7 +12,7 @@ export default function HomeSection() {
   return (
     <section
       id="home"
-      className="min-h-screen flex items-center justify-center px-4 pt-20 pb-16 relative bg-black"
+      className="flex items-center justify-center px-4 pt-20 pb-32 relative bg-black"
     >
       <div className="max-w-6xl mx-auto w-full flex flex-col md:flex-row items-center">
         <div className="flex flex-col gap-6 text-center md:text-left md:w-1/2 py-8">
@@ -61,7 +60,6 @@ export default function HomeSection() {
             sizes="(max-width: 768px) 320px, 50vw"
           />
         </div>
-        <ScrollDownArrow targetId="about" />
       </div>
     </section>
   );

@@ -35,10 +35,10 @@ export default function AboutSection() {
   return (
     <section
       id="about"
-      className="min-h-screen flex items-center justify-center px-4 py-24 relative"
+      className="flex items-center justify-center px-4 py-24 relative"
     >
-      <div className="max-w-6xl mx-auto w-full">
-        <div className="border border-zinc-800 bg-[#111111]/30 rounded-3xl p-8 md:p-12">
+      <div className="max-w-6xl mx-auto w-full -mt-24">
+        <div className="border border-zinc-800 rounded-3xl p-8 md:p-12" style={{ backgroundColor: "rgb(15, 15, 14)" }}>
           <div className="flex flex-col lg:flex-row gap-12 lg:gap-20">
             <div className="lg:w-1/2 flex flex-col gap-6">
               <p className="text-xs text-zinc-500 uppercase tracking-widest">
@@ -68,7 +68,8 @@ export default function AboutSection() {
               {statCards.map((card) => (
                 <div
                   key={card.label}
-                  className="bg-zinc-900/50 rounded-xl p-6 flex flex-col gap-3"
+                  className="rounded-xl p-6 flex flex-col gap-3"
+                  style={{ backgroundColor: "rgb(26, 26, 25)" }}
                 >
                   <card.icon className="w-6 h-6 text-white/60" />
                   <div>
