@@ -41,4 +41,17 @@ describe("ContactSection", () => {
     expect(screen.getByText(/name is required/i)).toBeInTheDocument();
     expect(screen.getByText(/email is required/i)).toBeInTheDocument();
   });
+
+  it("renders social links", () => {
+    render(<ContactSection />);
+    expect(
+      screen.getByLabelText("Visit Instagram profile")
+    ).toBeInTheDocument();
+    expect(
+      screen.getByLabelText("Visit LinkedIn profile")
+    ).toBeInTheDocument();
+    expect(
+      screen.getByLabelText("Visit Gmail profile")
+    ).toBeInTheDocument();
+  });
 });

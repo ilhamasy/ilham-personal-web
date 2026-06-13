@@ -10,14 +10,34 @@ describe("AboutSection", () => {
 
   it("renders about title", () => {
     render(<AboutSection />);
-    expect(screen.getByText("About Me")).toBeInTheDocument();
+    expect(
+      screen.getByText("Turning Business Needs Into Digital Solutions")
+    ).toBeInTheDocument();
   });
 
-  it("renders about text", () => {
+  it("renders about subheading", () => {
     render(<AboutSection />);
-    expect(
-      screen.getByText(/Dedicated and results oriented/)
-    ).toBeInTheDocument();
+    expect(screen.getByText("— About Me")).toBeInTheDocument();
+  });
+
+  it("renders experience card", () => {
+    render(<AboutSection />);
+    expect(screen.getByText("4+ Years Experience")).toBeInTheDocument();
+  });
+
+  it("renders banking card", () => {
+    render(<AboutSection />);
+    expect(screen.getByText("Banking & Contact Center")).toBeInTheDocument();
+  });
+
+  it("renders full-stack card", () => {
+    render(<AboutSection />);
+    expect(screen.getByText("Full-Stack Development")).toBeInTheDocument();
+  });
+
+  it("renders requirements card", () => {
+    render(<AboutSection />);
+    expect(screen.getByText("Requirements & Delivery")).toBeInTheDocument();
   });
 
   it("renders hero photo with circle", () => {
@@ -28,27 +48,20 @@ describe("AboutSection", () => {
     expect(parent?.className).toContain("rounded-full");
   });
 
-  it("renders social links", () => {
+  it("renders metrics", () => {
     render(<AboutSection />);
-    expect(
-      screen.getByLabelText("Visit Instagram profile")
-    ).toBeInTheDocument();
-    expect(
-      screen.getByLabelText("Visit LinkedIn profile")
-    ).toBeInTheDocument();
-    expect(
-      screen.getByLabelText("Visit Gmail profile")
-    ).toBeInTheDocument();
+    expect(screen.getByText("Years of Experience")).toBeInTheDocument();
+    expect(screen.getByText("Total Projects")).toBeInTheDocument();
+    expect(screen.getByText("Client Projects")).toBeInTheDocument();
   });
 
-  it("social links open in new tab", () => {
+  it("does not render social links", () => {
     render(<AboutSection />);
-    const links = screen
-      .getAllByRole("link")
-      .filter((l) => l.getAttribute("href")?.startsWith("http"));
-    links.forEach((link) => {
-      expect(link).toHaveAttribute("target", "_blank");
-      expect(link).toHaveAttribute("rel", "noopener noreferrer");
-    });
+    expect(
+      screen.queryByLabelText("Visit Instagram profile")
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByLabelText("Visit LinkedIn profile")
+    ).not.toBeInTheDocument();
   });
 });

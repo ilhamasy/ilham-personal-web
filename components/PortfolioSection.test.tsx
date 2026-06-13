@@ -8,21 +8,6 @@ describe("PortfolioSection", () => {
     expect(document.getElementById("my-portfolio")).toBeInTheDocument();
   });
 
-  it("renders years of experience metric", () => {
-    render(<PortfolioSection />);
-    expect(screen.getByText(/Years of Experience/i)).toBeInTheDocument();
-  });
-
-  it("renders total projects metric", () => {
-    render(<PortfolioSection />);
-    expect(screen.getByText(/Total Projects/i)).toBeInTheDocument();
-  });
-
-  it("renders client projects metric", () => {
-    render(<PortfolioSection />);
-    expect(screen.getByText(/Client Projects/i)).toBeInTheDocument();
-  });
-
   it("renders project role badges", () => {
     render(<PortfolioSection />);
     expect(screen.getAllByText("Developer").length).toBeGreaterThanOrEqual(1);
