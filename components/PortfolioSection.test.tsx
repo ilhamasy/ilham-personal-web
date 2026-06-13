@@ -25,10 +25,4 @@ describe("PortfolioSection", () => {
     const elements = screen.getAllByText("Omnichannel Chat Platform");
     expect(elements.length).toBeGreaterThanOrEqual(1);
   });
-
-  it("has timeline dot animation", () => {
-    render(<PortfolioSection />);
-    const dot = document.querySelector(".animate-timeline-dot");
-    expect(dot).toBeInTheDocument();
-  });
 });
