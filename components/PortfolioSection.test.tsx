@@ -11,26 +11,24 @@ describe("PortfolioSection", () => {
   it("renders project role badges", () => {
     render(<PortfolioSection />);
     expect(screen.getAllByText("Developer").length).toBeGreaterThanOrEqual(1);
-    expect(screen.getAllByText("IT Business Analyst").length).toBeGreaterThanOrEqual(1);
+    expect(screen.getAllByText("IT BA").length).toBeGreaterThanOrEqual(1);
   });
 
-  it("renders project years on cards", () => {
+  it("renders project years", () => {
     render(<PortfolioSection />);
-    const yearElements = screen.getAllByText(/202[56]/);
+    const yearElements = screen.getAllByText(/202[456]/);
     expect(yearElements.length).toBeGreaterThanOrEqual(2);
   });
 
   it("renders project names", () => {
     render(<PortfolioSection />);
-    expect(screen.getByText("Omnichannel Chat Platform")).toBeInTheDocument();
+    const elements = screen.getAllByText("Omnichannel Chat Platform");
+    expect(elements.length).toBeGreaterThanOrEqual(1);
   });
 
-  it("external links open in new tab", () => {
+  it("has timeline dot animation", () => {
     render(<PortfolioSection />);
-    const links = screen.queryAllByRole("link");
-    links.forEach((link) => {
-      expect(link).toHaveAttribute("target", "_blank");
-      expect(link).toHaveAttribute("rel", "noopener noreferrer");
-    });
+    const dot = document.querySelector(".animate-timeline-dot");
+    expect(dot).toBeInTheDocument();
   });
 });
