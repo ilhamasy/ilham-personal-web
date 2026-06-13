@@ -11,6 +11,12 @@
   --font-mono: var(--font-roboto-mono);
   --font-sans: var(--font-roboto);
   --font-ubuntu: var(--font-ubuntu);
+  --animate-blink-cursor: blink-cursor 1s steps(1) infinite;
+}
+
+@keyframes blink-cursor {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
 }
 
 :root {

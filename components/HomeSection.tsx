@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { SITE_CONFIG } from "@/lib/constants";
 import ScrollDownArrow from "./ScrollDownArrow";
+import { TypingAnimation } from "./TypingAnimation";
 
 export default function HomeSection() {
   const scrollToAbout = () => {
@@ -20,9 +21,12 @@ export default function HomeSection() {
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight">
             {SITE_CONFIG.name}
           </h1>
-            <p className="text-lg sm:text-xl text-accent font-medium font-ubuntu">
-            {SITE_CONFIG.role}
-          </p>
+            <TypingAnimation
+              words={["Full Stack Developer", "IT Business Analyst", "Tech Enthusiast"]}
+              loop
+              pauseDelay={2000}
+              className="text-lg sm:text-xl text-accent font-large font-ubuntu"
+            />
           <button
             onClick={scrollToAbout}
             className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-accent text-white font-medium text-sm hover:bg-accent-hover transition-colors cursor-pointer mx-auto md:mx-0 w-fit"
