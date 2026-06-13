@@ -8,6 +8,10 @@ export default function HomeSection() {
     const el = document.getElementById("about");
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   };
+  const scrollToFeaturedProjects = () => {
+    const el = document.getElementById("my-portfolio");
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
 
   return (
     <section
@@ -30,10 +34,10 @@ export default function HomeSection() {
             Who bridges business needs and technology solutions.
           </p>
           <button
-            onClick={scrollToAbout}
+            onClick={scrollToFeaturedProjects}
             className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white text-black font-medium text-sm hover:bg-gray-200 transition-colors cursor-pointer mx-auto md:mx-0 w-fit"
           >
-            More about me
+            Featured Projects
             <svg
               className="w-4 h-4"
               fill="none"
