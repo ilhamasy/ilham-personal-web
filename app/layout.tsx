@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   description:
     "Professional portfolio of Ilham Asyari — Full Stack Developer & IT Business Analyst",
   manifest: "/manifest.json",
-  themeColor: "#f97316",
+  themeColor: "#ffffff",
   metadataBase: new URL("https://ilhamasy.dev"),
   openGraph: {
     title: "Ilham Asyari — Personal Portfolio",
