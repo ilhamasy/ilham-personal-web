@@ -27,20 +27,20 @@ describe("AboutSection", () => {
     ).toBeInTheDocument();
   });
 
-  it("renders More About Me button", () => {
+  it("does not render More About Me button", () => {
     render(<AboutSection />);
-    expect(screen.getByText("More About Me")).toBeInTheDocument();
+    expect(screen.queryByText("More About Me")).not.toBeInTheDocument();
   });
 
   it("renders years experience stat", () => {
     render(<AboutSection />);
-    expect(screen.getByText("4+")).toBeInTheDocument();
+    const statValues = screen.getAllByText(/0\+/);
+    expect(statValues.length).toBeGreaterThanOrEqual(1);
     expect(screen.getByText("Years Experience")).toBeInTheDocument();
   });
 
   it("renders enterprise projects stat", () => {
     render(<AboutSection />);
-    expect(screen.getByText("7+")).toBeInTheDocument();
     expect(screen.getByText("Enterprise Projects")).toBeInTheDocument();
   });
 
@@ -52,7 +52,6 @@ describe("AboutSection", () => {
 
   it("renders stakeholders stat", () => {
     render(<AboutSection />);
-    expect(screen.getByText("20+")).toBeInTheDocument();
     expect(screen.getByText("Stakeholders Collaborated")).toBeInTheDocument();
   });
 

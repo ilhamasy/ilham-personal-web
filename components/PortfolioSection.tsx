@@ -8,7 +8,7 @@ export default function PortfolioSection() {
     <section id="my-portfolio" className="min-h-screen px-4 py-24 relative">
       <div className="max-w-5xl mx-auto">
         <h2 className="text-2xl sm:text-3xl font-bold text-center mb-12">
-          My Portfolio
+          Featured Project
         </h2>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">

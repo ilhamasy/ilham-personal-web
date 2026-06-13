@@ -29,7 +29,7 @@ describe("QA Integration", () => {
     render(<Home />);
     expect(screen.getByText(/Ilham Asyari/i)).toBeInTheDocument();
     expect(screen.getByText(/Turning Business Needs Into Digital Solutions/i)).toBeInTheDocument();
-    expect(screen.getByText("My Portfolio")).toBeInTheDocument();
+    expect(screen.getByText("Featured Project")).toBeInTheDocument();
     expect(screen.getByText("Tech Stack")).toBeInTheDocument();
     expect(screen.getByText("Contact Me")).toBeInTheDocument();
   });
