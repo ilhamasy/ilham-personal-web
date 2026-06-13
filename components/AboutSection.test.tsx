@@ -8,47 +8,60 @@ describe("AboutSection", () => {
     expect(document.getElementById("about")).toBeInTheDocument();
   });
 
-  it("renders about title", () => {
+  it("renders about label", () => {
     render(<AboutSection />);
-    expect(screen.getByText("About Me")).toBeInTheDocument();
+    expect(screen.getByText("— ABOUT ME")).toBeInTheDocument();
   });
 
-  it("renders about text", () => {
+  it("renders heading", () => {
     render(<AboutSection />);
     expect(
-      screen.getByText(/Dedicated and results oriented/)
+      screen.getByText("Turning Business Needs Into Digital Solutions")
     ).toBeInTheDocument();
   });
 
-  it("renders hero photo with circle", () => {
-    render(<AboutSection />);
-    const photo = screen.getByAltText("Ilham Asyari");
-    expect(photo).toBeInTheDocument();
-    const parent = photo.parentElement;
-    expect(parent?.className).toContain("rounded-full");
-  });
-
-  it("renders social links", () => {
+  it("renders description paragraph", () => {
     render(<AboutSection />);
     expect(
-      screen.getByLabelText("Visit Instagram profile")
-    ).toBeInTheDocument();
-    expect(
-      screen.getByLabelText("Visit LinkedIn profile")
-    ).toBeInTheDocument();
-    expect(
-      screen.getByLabelText("Visit Gmail profile")
+      screen.getByText(/4\+ years of experience/i)
     ).toBeInTheDocument();
   });
 
-  it("social links open in new tab", () => {
+  it("does not render More About Me button", () => {
     render(<AboutSection />);
-    const links = screen
-      .getAllByRole("link")
-      .filter((l) => l.getAttribute("href")?.startsWith("http"));
-    links.forEach((link) => {
-      expect(link).toHaveAttribute("target", "_blank");
-      expect(link).toHaveAttribute("rel", "noopener noreferrer");
-    });
+    expect(screen.queryByText("More About Me")).not.toBeInTheDocument();
+  });
+
+  it("renders years experience stat", () => {
+    render(<AboutSection />);
+    const statValues = screen.getAllByText(/0\+/);
+    expect(statValues.length).toBeGreaterThanOrEqual(1);
+    expect(screen.getByText("Years Experience")).toBeInTheDocument();
+  });
+
+  it("renders enterprise projects stat", () => {
+    render(<AboutSection />);
+    expect(screen.getByText("Enterprise Projects")).toBeInTheDocument();
+  });
+
+  it("renders industry experience stat", () => {
+    render(<AboutSection />);
+    expect(screen.getByText("Banking & Fintech")).toBeInTheDocument();
+    expect(screen.getByText("Industry Experience")).toBeInTheDocument();
+  });
+
+  it("renders stakeholders stat", () => {
+    render(<AboutSection />);
+    expect(screen.getByText("Stakeholders Collaborated")).toBeInTheDocument();
+  });
+
+  it("does not render social links", () => {
+    render(<AboutSection />);
+    expect(
+      screen.queryByLabelText("Visit Instagram profile")
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByLabelText("Visit LinkedIn profile")
+    ).not.toBeInTheDocument();
   });
 });

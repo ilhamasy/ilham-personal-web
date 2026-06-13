@@ -1,6 +1,27 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import Image from "next/image";
+import { SITE_CONFIG } from "@/lib/constants";
+
+const socialLinks = [
+  {
+    name: "Instagram",
+    url: SITE_CONFIG.socials.instagram,
+    icon: "/assets/instagram.png",
+  },
+  {
+    name: "LinkedIn",
+    url: SITE_CONFIG.socials.linkedin,
+    icon: "/assets/linkedin.png",
+  },
+  {
+    name: "Gmail",
+    url: `mailto:${SITE_CONFIG.email}`,
+    icon: "/assets/gmail.png",
+    isMail: true,
+  },
+];
 
 interface FormData {
   name: string;
@@ -89,6 +110,26 @@ export default function ContactSection() {
         <h2 className="text-2xl sm:text-3xl font-bold text-center mb-12">
           Contact Me
         </h2>
+
+        <div className="flex items-center justify-center gap-6 mb-10">
+          {socialLinks.map((link) => (
+            <a
+              key={link.name}
+              href={link.url}
+              target={link.isMail ? undefined : "_blank"}
+              rel={link.isMail ? undefined : "noopener noreferrer"}
+              className="opacity-70 hover:opacity-100 hover:scale-110 transition-all duration-200"
+              aria-label={`Visit ${link.name} profile`}
+            >
+              <Image
+                src={link.icon}
+                alt={link.name}
+                width={28}
+                height={28}
+              />
+            </a>
+          ))}
+        </div>
 
         {status === "success" ? (
           <div className="text-center p-8 bg-card border border-card-border rounded-xl">

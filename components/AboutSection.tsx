@@ -1,72 +1,152 @@
-import Image from "next/image";
-import { SITE_CONFIG } from "@/lib/constants";
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+import {
+  Briefcase,
+  Folder,
+  Building2,
+  Users,
+} from "lucide-react";
 import ScrollDownArrow from "./ScrollDownArrow";
 
-const socialLinks = [
+const statCards = [
   {
-    name: "Instagram",
-    url: SITE_CONFIG.socials.instagram,
-    icon: "/assets/instagram.png",
+    icon: Briefcase,
+    value: 4,
+    suffix: "+",
+    label: "Years Experience",
   },
   {
-    name: "LinkedIn",
-    url: SITE_CONFIG.socials.linkedin,
-    icon: "/assets/linkedin.png",
+    icon: Folder,
+    value: 7,
+    suffix: "+",
+    label: "Enterprise Projects",
   },
   {
-    name: "Gmail",
-    url: `mailto:${SITE_CONFIG.email}`,
-    icon: "/assets/gmail.png",
-    isMail: true,
+    icon: Building2,
+    textValue: "Banking & Fintech",
+    label: "Industry Experience",
+    isTextValue: true,
+  },
+  {
+    icon: Users,
+    value: 20,
+    suffix: "+",
+    label: "Stakeholders Collaborated",
   },
 ];
 
+function useCountUp(target: number, isActive: boolean) {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    if (!isActive) {
+      setCount(0);
+      return;
+    }
+
+    if (target === 0) return;
+
+    const duration = 1000;
+    const steps = 30;
+    const increment = target / steps;
+    const interval = duration / steps;
+    let current = 0;
+    let step = 0;
+
+    const timer = setInterval(() => {
+      step++;
+      current = Math.min(Math.round(increment * step), target);
+      setCount(current);
+      if (step >= steps) clearInterval(timer);
+    }, interval);
+
+    return () => clearInterval(timer);
+  }, [target, isActive]);
+
+  return count;
+}
+
+function StatCard({
+  card,
+  isActive,
+}: {
+  card: (typeof statCards)[number];
+  isActive: boolean;
+}) {
+  const count = !card.isTextValue ? useCountUp(card.value!, isActive) : 0;
+
+  return (
+    <div
+      className="rounded-xl p-6 flex flex-col gap-3"
+      style={{ backgroundColor: "rgb(26, 26, 25)" }}
+    >
+      <card.icon className="w-6 h-6 text-white/60" />
+      <div>
+        <p
+          className={
+            card.isTextValue
+              ? "text-base font-bold text-white"
+              : "text-3xl font-bold text-white"
+          }
+        >
+          {card.isTextValue ? card.textValue : `${count}${card.suffix}`}
+        </p>
+        <p className="text-xs text-zinc-500 mt-1">{card.label}</p>
+      </div>
+    </div>
+  );
+}
+
 export default function AboutSection() {
+  const [isActive, setIsActive] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) setIsActive(true);
+      },
+      { threshold: 0.3 }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section
       id="about"
-      className="min-h-screen flex items-center justify-center px-4 py-24 relative"
+      className="flex items-center justify-center px-4 py-24 relative"
     >
-      <div className="max-w-5xl mx-auto w-full flex flex-col items-center gap-12">
-        <h2 className="text-2xl sm:text-3xl font-bold text-center">
-          About Me
-        </h2>
+      <div className="max-w-6xl mx-auto w-full -mt-55">
+        <div className="border border-zinc-800 rounded-3xl p-8 md:p-12" style={{ backgroundColor: "rgb(15, 15, 14)" }}>
+          <div className="flex flex-col lg:flex-row gap-12 lg:gap-20">
+            <div className="lg:w-1/2 flex flex-col gap-6">
+              <p className="text-xs text-zinc-500 uppercase tracking-widest">
+                — ABOUT ME
+              </p>
+              <h2 className="text-2xl sm:text-3xl font-bold text-white">
+                Turning Business Needs Into Digital Solutions
+              </h2>
+              <p className="text-sm sm:text-base text-zinc-400 leading-relaxed">
+                With 4+ years of experience, I help organizations design and
+                deliver scalable digital solutions. As an IT Business Analyst
+                and Full Stack Developer, I work across the business and
+                technology spectrum — translating complex requirements into
+                clear, feasible, and scalable implementations for banking,
+                contact center, CRM, and customer engagement platforms.
+              </p>
+            </div>
 
-        <div className="w-full flex flex-col md:flex-row items-center gap-8 md:gap-16">
-          <div className="relative w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 rounded-full overflow-hidden border-2 border-accent/30 ring-4 ring-accent/10 shrink-0">
-            <Image
-              src="/assets/aal_hero.jpeg"
-              alt="Ilham Asyari"
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 192px, 256px"
-            />
-          </div>
-
-          <div className="flex flex-col gap-6 md:flex-1">
-            <p className="text-xs sm:text-sm text-muted leading-relaxed font-ubuntu">
-              {SITE_CONFIG.about}
-            </p>
-
-          <div className="flex items-center gap-6 md:justify-start justify-center">
-            {socialLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.url}
-                target={link.isMail ? undefined : "_blank"}
-                rel={link.isMail ? undefined : "noopener noreferrer"}
-                className="opacity-70 hover:opacity-100 hover:scale-110 transition-all duration-200"
-                aria-label={`Visit ${link.name} profile`}
-              >
-                <Image
-                  src={link.icon}
-                  alt={link.name}
-                  width={28}
-                  height={28}
-                />
-              </a>
-            ))}
-          </div>
+            <div className="lg:w-1/2 grid grid-cols-2 gap-4" ref={ref}>
+              {statCards.map((card) => (
+                <StatCard key={card.label} card={card} isActive={isActive} />
+              ))}
+            </div>
           </div>
         </div>
         <ScrollDownArrow targetId="my-portfolio" />

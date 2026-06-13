@@ -9,7 +9,7 @@ interface BlobBackgroundProps {
 }
 
 export default function BlobBackground({
-  colors = ["#f97316", "#a855f7", "#3b82f6", "#06b6d4"],
+  colors = ["#ffffff", "#a855f7", "#3b82f6", "#06b6d4"],
   blur = 120,
   opacity = 0.4,
 }: BlobBackgroundProps) {
