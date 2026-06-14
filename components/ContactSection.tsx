@@ -26,7 +26,7 @@ const socialLinks = [
 export default function ContactSection() {
   return (
     <section id="contact-me" className="min-h-screen flex items-center justify-center px-4 py-24">
-      <div className="max-w-lg mx-auto w-full">
+      <div className="max-w-2xl mx-auto w-full px-4">
         <div className="text-center mb-12">
           <TextAnimate
             className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white text-center"
