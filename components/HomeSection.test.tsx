@@ -22,9 +22,9 @@ describe("HomeSection", () => {
     expect(cursorSpan?.textContent).toBe("|");
   });
 
-  it("renders More about me button", () => {
+  it("renders Featured Projects button", () => {
     render(<HomeSection />);
-    expect(screen.getByText(/More about me/i)).toBeInTheDocument();
+    expect(screen.getByText("Featured Projects")).toBeInTheDocument();
   });
 
   it("renders hero photo with white shadow", () => {

@@ -12,7 +12,6 @@ describe("Navbar", () => {
   it("renders all navigation tabs", () => {
     render(<Navbar />);
     expect(screen.getByText("Home")).toBeInTheDocument();
-    expect(screen.getByText("About")).toBeInTheDocument();
     expect(screen.getByText("Featured Project")).toBeInTheDocument();
     expect(screen.getByText("Tech Stack")).toBeInTheDocument();
     expect(screen.getByText("Contact Me")).toBeInTheDocument();
