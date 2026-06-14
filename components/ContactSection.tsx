@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import { SITE_CONFIG } from "@/lib/constants";
 import { TypingAnimation } from "./TypingAnimation";
@@ -29,6 +31,7 @@ export default function ContactSection() {
           <TypingAnimation
             className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white block text-center"
             as="h1"
+            startOnView={false}
           >
             Let&apos;s Build Something Together
           </TypingAnimation>
