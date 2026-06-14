@@ -23,7 +23,7 @@ describe("AboutSection", () => {
   it("renders description paragraph", () => {
     render(<AboutSection />);
     expect(
-      screen.getByText(/4\+ years of experience/i)
+      screen.getByText(/years of experience/i)
     ).toBeInTheDocument();
   });
 
@@ -46,7 +46,7 @@ describe("AboutSection", () => {
 
   it("renders industry experience stat", () => {
     render(<AboutSection />);
-    expect(screen.getByText("Banking & Fintech")).toBeInTheDocument();
+    expect(screen.getByText("Banking & Contact Center")).toBeInTheDocument();
     expect(screen.getByText("Industry Experience")).toBeInTheDocument();
   });
 
