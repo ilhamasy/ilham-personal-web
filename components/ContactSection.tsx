@@ -35,7 +35,17 @@ export default function ContactSection() {
             by="character"
             once={false}
           >
-            Let&apos;s Build Something Together
+            Let&apos;s Build
+          </TextAnimate>
+          <TextAnimate
+            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white text-center"
+            as="h1"
+            animation="slideLeft"
+            by="character"
+            once={false}
+            delay={0.5}
+          >
+            Something Together
           </TextAnimate>
           <p className="text-sm sm:text-base text-zinc-400 mt-4 leading-relaxed">
             Whether you&apos;re looking for a Business Analyst, need a website,
