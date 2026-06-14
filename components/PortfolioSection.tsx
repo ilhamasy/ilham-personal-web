@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { projects } from "@/lib/projects";
+import { GlareHover } from "./GlareHover";
 import ScrollDownArrow from "./ScrollDownArrow";
 
 type Project = (typeof projects)[number];
@@ -21,15 +22,17 @@ function ProjectCard({ project }: { project: Project }) {
       onMouseEnter={() => setExpanded(true)}
       onMouseLeave={() => setExpanded(false)}
     >
-      <div className="bg-[#1a1a19] border border-zinc-800 rounded-xl p-5 hover:border-zinc-600 transition-colors cursor-pointer">
-        <p className="font-semibold text-sm">{project.name}</p>
-        <div className="flex items-center gap-2 mt-2">
-          <span className="text-xs px-2 py-0.5 rounded-full bg-accent/10 text-accent">
-            {project.role}
-          </span>
-          <span className="text-xs text-muted">{formatYears(project.years)}</span>
+      <GlareHover className="rounded-xl" color="#505050" duration={700}>
+        <div className="bg-[#1a1a19] border border-zinc-800 rounded-xl p-5 cursor-pointer">
+          <p className="font-semibold text-sm">{project.name}</p>
+          <div className="flex items-center gap-2 mt-2">
+            <span className="text-xs px-2 py-0.5 rounded-full bg-accent/10 text-accent">
+              {project.role}
+            </span>
+            <span className="text-xs text-muted">{formatYears(project.years)}</span>
+          </div>
         </div>
-      </div>
+      </GlareHover>
 
       {expanded && (
         <div className="absolute left-0 right-0 top-full mt-2 z-20 bg-[#1a1a19] border border-zinc-700 rounded-xl p-5 shadow-xl space-y-3 text-xs text-zinc-400 leading-relaxed">
