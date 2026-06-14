@@ -1,115 +1,116 @@
-"use client";
-
-import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
-import { techCategories } from "@/lib/tech-stack";
+import {
+  Briefcase,
+  RefreshCw,
+  Atom,
+  Server,
+  Cloud,
+  Lightbulb,
+} from "lucide-react";
 import ScrollDownArrow from "./ScrollDownArrow";
 
-function ProgressBar({
-  percentage,
-  isActive,
-}: {
-  percentage: number;
-  isActive: boolean;
-}) {
-  const [width, setWidth] = useState(0);
-
-  useEffect(() => {
-    if (!isActive) {
-      setWidth(0);
-      return;
-    }
-
-    const timer = setTimeout(() => setWidth(percentage), 100);
-    return () => clearTimeout(timer);
-  }, [percentage, isActive]);
-
-  return (
-    <div className="w-full h-1.5 bg-foreground/10 rounded-full overflow-hidden">
-      <div
-        className="h-full bg-accent rounded-full transition-all duration-1000 ease-out"
-        style={{ width: `${width}%` }}
-      />
-    </div>
-  );
-}
-
-function TechItemCard({
-  item,
-  isActive,
-}: {
-  item: { name: string; icon: string; percentage: number };
-  isActive: boolean;
-}) {
-  return (
-    <div className="flex items-center gap-3">
-      <Image
-        src={item.icon}
-        alt={item.name}
-        width={32}
-        height={32}
-        className="shrink-0"
-      />
-      <div className="flex-1 min-w-0">
-        <div className="flex items-center justify-between mb-1">
-          <span className="text-xs font-medium">{item.name}</span>
-          <span className="text-xs text-muted">{item.percentage}%</span>
-        </div>
-        <ProgressBar percentage={item.percentage} isActive={isActive} />
-      </div>
-    </div>
-  );
-}
+const skillCategories = [
+  {
+    title: "Business Analysis",
+    icon: Briefcase,
+    items: [
+      "Requirement Gathering",
+      "BRD",
+      "FSD",
+      "User Story Mapping",
+      "UAT Management",
+      "Stakeholder Management",
+      "Weekly Update",
+    ],
+  },
+  {
+    title: "Delivery Methodology",
+    icon: RefreshCw,
+    items: [
+      "Agile Scrum",
+      "Waterfall",
+      "Sprint Planning",
+      "Backlog Grooming",
+      "Release Management",
+    ],
+  },
+  {
+    title: "Frontend",
+    icon: Atom,
+    items: [
+      "Next.js",
+      "React Native",
+      "Android Native",
+      "Flutter",
+    ],
+  },
+  {
+    title: "Backend",
+    icon: Server,
+    items: [
+      "Java Springboot",
+      "Flask Python",
+      "Node.js",
+      "PostgreSQL",
+    ],
+  },
+  {
+    title: "Infrastructure",
+    icon: Cloud,
+    items: [
+      "Github Action",
+      "Docker",
+    ],
+  },
+  {
+    title: "Enterprise Solutions",
+    icon: Lightbulb,
+    items: [
+      "CRM Integration",
+      "Telephony (VoIP)",
+      "Omnichannel",
+      "Chatbot",
+      "Digital Onboarding",
+      "Video Call",
+    ],
+  },
+];
 
 export default function TechStackSection() {
-  const [isActive, setIsActive] = useState(false);
-  const ref = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsActive(entry.isIntersecting);
-      },
-      { threshold: 0.2 }
-    );
-
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
   return (
-    <section ref={ref} id="tech-stack" className="min-h-screen px-4 py-24 relative">
+    <section id="tech-stack" className="min-h-screen px-4 py-24 relative">
       <div className="max-w-5xl mx-auto">
         <h2 className="text-2xl sm:text-3xl font-bold text-center mb-12">
-          Tech Stack
+          Skills & Technologies
         </h2>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {techCategories.map((category) => (
+          {skillCategories.map((category) => (
             <div
               key={category.title}
-              className="bg-card border border-card-border rounded-xl p-6"
+              className="bg-[#1a1a19] border border-zinc-800 rounded-xl p-6"
             >
-              <h3 className="text-lg font-semibold mb-5 text-accent">
-                {category.title}
-              </h3>
-              <div className="flex flex-col gap-4">
-                {category.items.map((item) => (
-                  <TechItemCard
-                    key={item.name}
-                    item={item}
-                    isActive={isActive}
-                  />
-                ))}
+              <div className="flex items-center gap-3 mb-4">
+                <category.icon className="w-5 h-5 text-white/70" />
+                <h3 className="text-base font-semibold text-white">
+                  {category.title}
+                </h3>
               </div>
+              <ul className="space-y-1.5">
+                {category.items.map((item) => (
+                  <li
+                    key={item}
+                    className="text-xs text-zinc-400 flex items-start gap-2"
+                  >
+                    <span className="text-white/40 mt-0.5 shrink-0">•</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
             </div>
           ))}
         </div>
+        <ScrollDownArrow targetId="contact-me" />
       </div>
-      <ScrollDownArrow targetId="contact-me" />
     </section>
   );
 }

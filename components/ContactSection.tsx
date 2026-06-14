@@ -3,12 +3,14 @@
 import { useState, type FormEvent } from "react";
 import Image from "next/image";
 import { SITE_CONFIG } from "@/lib/constants";
+import { TypingAnimation } from "./TypingAnimation";
 
 const socialLinks = [
   {
-    name: "Instagram",
-    url: SITE_CONFIG.socials.instagram,
-    icon: "/assets/instagram.png",
+    name: "Gmail",
+    url: `mailto:${SITE_CONFIG.email}`,
+    icon: "/assets/gmail.png",
+    isMail: true,
   },
   {
     name: "LinkedIn",
@@ -16,10 +18,9 @@ const socialLinks = [
     icon: "/assets/linkedin.png",
   },
   {
-    name: "Gmail",
-    url: `mailto:${SITE_CONFIG.email}`,
-    icon: "/assets/gmail.png",
-    isMail: true,
+    name: "Instagram",
+    url: SITE_CONFIG.socials.instagram,
+    icon: "/assets/instagram.png",
   },
 ];
 
@@ -107,9 +108,19 @@ export default function ContactSection() {
   return (
     <section id="contact-me" className="min-h-screen flex items-center justify-center px-4 py-24">
       <div className="max-w-lg mx-auto w-full">
-        <h2 className="text-2xl sm:text-3xl font-bold text-center mb-12">
-          Contact Me
-        </h2>
+        <div className="text-center mb-12">
+          <TypingAnimation
+            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white block text-center"
+            as="h1"
+          >
+            Let&apos;s Build Something Together
+          </TypingAnimation>
+          <p className="text-sm sm:text-base text-zinc-400 mt-4 leading-relaxed">
+            Whether you&apos;re looking for a Business Analyst, need a website,
+            or want to integrate enterprise systems, I&apos;d love to hear about
+            your ideas.
+          </p>
+        </div>
 
         <div className="flex items-center justify-center gap-6 mb-10">
           {socialLinks.map((link) => (

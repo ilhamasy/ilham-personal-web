@@ -9,9 +9,17 @@ describe("ContactSection", () => {
     expect(document.getElementById("contact-me")).toBeInTheDocument();
   });
 
-  it("renders section title", () => {
+  it("renders section title with typing animation", () => {
     render(<ContactSection />);
-    expect(screen.getByText(/Contact Me/i)).toBeInTheDocument();
+    const heading = document.querySelector("h1");
+    expect(heading).toBeInTheDocument();
+  });
+
+  it("renders subtitle", () => {
+    render(<ContactSection />);
+    expect(
+      screen.getByText(/Whether you're looking for a Business Analyst/i)
+    ).toBeInTheDocument();
   });
 
   it("renders name input", () => {

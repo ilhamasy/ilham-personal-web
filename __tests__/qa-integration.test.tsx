@@ -30,8 +30,10 @@ describe("QA Integration", () => {
     expect(screen.getByText(/Ilham Asyari/i)).toBeInTheDocument();
     expect(screen.getByText(/Turning Business Needs Into Digital Solutions/i)).toBeInTheDocument();
     expect(screen.getByText("Featured Project")).toBeInTheDocument();
-    expect(screen.getByText("Tech Stack")).toBeInTheDocument();
-    expect(screen.getByText("Contact Me")).toBeInTheDocument();
+    expect(screen.getByText("Skills & Technologies")).toBeInTheDocument();
+    expect(
+      screen.getByText(/Whether you're looking for a Business Analyst/i)
+    ).toBeInTheDocument();
   });
 
   it("contact form exists with all fields", () => {
