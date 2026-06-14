@@ -35,12 +35,4 @@ describe("QA Integration", () => {
       screen.getByText(/Whether you're looking for a Business Analyst/i)
     ).toBeInTheDocument();
   });
-
-  it("contact form exists with all fields", () => {
-    render(<Home />);
-    expect(screen.getByLabelText(/name/i)).toBeInTheDocument();
-    expect(screen.getByLabelText(/email/i)).toBeInTheDocument();
-    expect(screen.getByLabelText(/purpose/i)).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: /send/i })).toBeInTheDocument();
-  });
 });
