@@ -22,7 +22,7 @@ function ProjectCard({ project }: { project: Project }) {
       onMouseEnter={() => setExpanded(true)}
       onMouseLeave={() => setExpanded(false)}
     >
-      <GlareHover className="rounded-xl" color="#505050" duration={700}>
+      <GlareHover className="rounded-xl w-full" color="#505050" duration={700}>
         <div className="bg-[#1a1a19] border border-zinc-800 rounded-xl p-5 cursor-pointer">
           <p className="font-semibold text-sm">{project.name}</p>
           <div className="flex items-center gap-2 mt-2">
