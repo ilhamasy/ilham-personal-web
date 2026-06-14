@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { SITE_CONFIG } from "@/lib/constants";
-import { TypingAnimation } from "./TypingAnimation";
+import { TextAnimate } from "./TextAnimate";
 
 const socialLinks = [
   {
@@ -28,13 +28,15 @@ export default function ContactSection() {
     <section id="contact-me" className="min-h-screen flex items-center justify-center px-4 py-24">
       <div className="max-w-lg mx-auto w-full">
         <div className="text-center mb-12">
-          <TypingAnimation
-            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white block text-center"
+          <TextAnimate
+            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white text-center"
             as="h1"
-            startOnView={false}
+            animation="slideLeft"
+            by="character"
+            once={false}
           >
             Let&apos;s Build Something Together
-          </TypingAnimation>
+          </TextAnimate>
           <p className="text-sm sm:text-base text-zinc-400 mt-4 leading-relaxed">
             Whether you&apos;re looking for a Business Analyst, need a website,
             or want to integrate enterprise systems, I&apos;d love to hear about
