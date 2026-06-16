@@ -8,10 +8,10 @@ describe("ContactSection", () => {
     expect(document.getElementById("contact-me")).toBeInTheDocument();
   });
 
-  it("renders section title with typing animation", () => {
+  it("renders section title with animation", () => {
     render(<ContactSection />);
-    const heading = document.querySelector("h1");
-    expect(heading).toBeInTheDocument();
+    const headings = document.querySelectorAll("h1");
+    expect(headings.length).toBeGreaterThanOrEqual(1);
   });
 
   it("renders subtitle", () => {
@@ -21,16 +21,25 @@ describe("ContactSection", () => {
     ).toBeInTheDocument();
   });
 
-  it("renders social links", () => {
+  it("renders Email me button", () => {
+    render(<ContactSection />);
+    expect(screen.getByText("Email me")).toBeInTheDocument();
+  });
+
+  it("renders social media text", () => {
     render(<ContactSection />);
     expect(
-      screen.getByLabelText("Visit Instagram profile")
+      screen.getByText(/or follow my social media/i)
     ).toBeInTheDocument();
+  });
+
+  it("renders LinkedIn and Instagram links", () => {
+    render(<ContactSection />);
     expect(
       screen.getByLabelText("Visit LinkedIn profile")
     ).toBeInTheDocument();
     expect(
-      screen.getByLabelText("Visit Gmail profile")
+      screen.getByLabelText("Visit Instagram profile")
     ).toBeInTheDocument();
   });
 });
