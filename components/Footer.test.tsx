@@ -10,20 +10,4 @@ describe("Footer", () => {
     expect(screen.getByText(/Ilham Asyari/)).toBeInTheDocument();
     expect(screen.getByText(/All rights reserved/)).toBeInTheDocument();
   });
-
-  it("renders social link icons", () => {
-    render(<Footer />);
-    expect(screen.getByLabelText("Instagram")).toBeInTheDocument();
-    expect(screen.getByLabelText("LinkedIn")).toBeInTheDocument();
-    expect(screen.getByLabelText("GitHub")).toBeInTheDocument();
-  });
-
-  it("social links open in new tab", () => {
-    render(<Footer />);
-    const links = screen.getAllByRole("link");
-    links.forEach((link) => {
-      expect(link).toHaveAttribute("target", "_blank");
-      expect(link).toHaveAttribute("rel", "noopener noreferrer");
-    });
-  });
 });

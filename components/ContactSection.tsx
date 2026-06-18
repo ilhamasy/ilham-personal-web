@@ -1,214 +1,74 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
 import Image from "next/image";
 import { SITE_CONFIG } from "@/lib/constants";
-
-const socialLinks = [
-  {
-    name: "Instagram",
-    url: SITE_CONFIG.socials.instagram,
-    icon: "/assets/instagram.png",
-  },
-  {
-    name: "LinkedIn",
-    url: SITE_CONFIG.socials.linkedin,
-    icon: "/assets/linkedin.png",
-  },
-  {
-    name: "Gmail",
-    url: `mailto:${SITE_CONFIG.email}`,
-    icon: "/assets/gmail.png",
-    isMail: true,
-  },
-];
-
-interface FormData {
-  name: string;
-  email: string;
-  purpose: string;
-}
-
-interface FormErrors {
-  name?: string;
-  email?: string;
-  purpose?: string;
-}
-
-type TouchedFields = Record<keyof FormData, boolean>;
+import { TextAnimate } from "./TextAnimate";
 
 export default function ContactSection() {
-  const [form, setForm] = useState<FormData>({ name: "", email: "", purpose: "" });
-  const [errors, setErrors] = useState<FormErrors>({});
-  const [touched, setTouched] = useState<TouchedFields>({ name: false, email: false, purpose: false });
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
-
-  const validateField = (field: keyof FormData, value: string): string | undefined => {
-    switch (field) {
-      case "name":
-        if (!value.trim()) return "Name is required";
-        break;
-      case "email":
-        if (!value.trim()) return "Email is required";
-        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) return "Invalid email format";
-        break;
-      case "purpose":
-        if (!value.trim()) return "Purpose is required";
-        break;
-    }
-    return undefined;
-  };
-
-  const validateAll = (): boolean => {
-    const newErrors: FormErrors = {};
-    const nameErr = validateField("name", form.name);
-    const emailErr = validateField("email", form.email);
-    const purposeErr = validateField("purpose", form.purpose);
-    if (nameErr) newErrors.name = nameErr;
-    if (emailErr) newErrors.email = emailErr;
-    if (purposeErr) newErrors.purpose = purposeErr;
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
-  const handleChange = (field: keyof FormData, value: string) => {
-    setForm({ ...form, [field]: value });
-    if (touched[field]) {
-      const err = validateField(field, value);
-      setErrors((prev) => {
-        const next = { ...prev };
-        if (err) next[field] = err;
-        else delete next[field];
-        return next;
-      });
-    }
-  };
-
-  const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault();
-    setTouched({ name: true, email: true, purpose: true });
-    if (!validateAll()) return;
-
-    setStatus("loading");
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      });
-      if (!res.ok) throw new Error("Failed");
-      setStatus("success");
-      setForm({ name: "", email: "", purpose: "" });
-    } catch {
-      setStatus("error");
-    }
-  };
-
   return (
     <section id="contact-me" className="min-h-screen flex items-center justify-center px-4 py-24">
-      <div className="max-w-lg mx-auto w-full">
-        <h2 className="text-2xl sm:text-3xl font-bold text-center mb-12">
-          Contact Me
-        </h2>
-
-        <div className="flex items-center justify-center gap-6 mb-10">
-          {socialLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.url}
-              target={link.isMail ? undefined : "_blank"}
-              rel={link.isMail ? undefined : "noopener noreferrer"}
-              className="opacity-70 hover:opacity-100 hover:scale-110 transition-all duration-200"
-              aria-label={`Visit ${link.name} profile`}
-            >
-              <Image
-                src={link.icon}
-                alt={link.name}
-                width={28}
-                height={28}
-              />
-            </a>
-          ))}
+      <div className="max-w-2xl mx-auto w-full px-4">
+        <div className="text-center mb-12">
+          <TextAnimate
+            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white text-center"
+            as="h1"
+            animation="slideLeft"
+            by="character"
+            once={false}
+          >
+            Let&apos;s Build
+          </TextAnimate>
+          <TextAnimate
+            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white text-center"
+            as="h1"
+            animation="slideLeft"
+            by="character"
+            once={false}
+            delay={0.5}
+          >
+            Something Together
+          </TextAnimate>
+          <p className="text-sm sm:text-base text-zinc-400 mt-4 leading-relaxed">
+            Whether you&apos;re looking for a Business Analyst, need a website,
+            or want to integrate enterprise systems, I&apos;d love to hear about
+            your ideas.
+          </p>
         </div>
 
-        {status === "success" ? (
-          <div className="text-center p-8 bg-card border border-card-border rounded-xl">
-            <p className="text-accent text-lg font-semibold mb-2">Thanks!</p>
-            <p className="text-sm text-muted">I&apos;ll get back to you soon.</p>
-          </div>
-        ) : (
-          <form onSubmit={handleSubmit} className="flex flex-col gap-5">
-            {/* Honeypot */}
-            <div className="absolute opacity-0 pointer-events-none" aria-hidden="true">
-              <input type="text" name="website" tabIndex={-1} autoComplete="off" />
-            </div>
+        <div className="flex flex-col items-center gap-6">
+          <a
+            href="mailto:ilham.asyari8@gmail.com"
+            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-white text-black font-medium text-sm hover:bg-gray-200 transition-colors"
+          >
+            Email me
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </a>
 
-            <div>
-              <label htmlFor="name" className="block text-sm font-medium mb-1.5">
-                Name
-              </label>
-              <input
-                id="name"
-                type="text"
-                value={form.name}
-                onChange={(e) => handleChange("name", e.target.value)}
-                className="w-full px-4 py-2.5 rounded-lg bg-card border border-card-border text-sm focus:outline-none focus:border-accent/50 transition-colors"
-                placeholder="Your name"
-              />
-              {touched.name && errors.name && (
-                <p className="text-xs text-red-400 mt-1">{errors.name}</p>
-              )}
-            </div>
+          <p className="text-xs text-zinc-500">or follow my social media</p>
 
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium mb-1.5">
-                Email
-              </label>
-              <input
-                id="email"
-                type="email"
-                value={form.email}
-                onChange={(e) => handleChange("email", e.target.value)}
-                className="w-full px-4 py-2.5 rounded-lg bg-card border border-card-border text-sm focus:outline-none focus:border-accent/50 transition-colors"
-                placeholder="you@example.com"
-              />
-              {touched.email && errors.email && (
-                <p className="text-xs text-red-400 mt-1">{errors.email}</p>
-              )}
-            </div>
-
-            <div>
-              <label htmlFor="purpose" className="block text-sm font-medium mb-1.5">
-                Purpose
-              </label>
-              <textarea
-                id="purpose"
-                rows={4}
-                value={form.purpose}
-                onChange={(e) => handleChange("purpose", e.target.value)}
-                className="w-full px-4 py-2.5 rounded-lg bg-card border border-card-border text-sm focus:outline-none focus:border-accent/50 transition-colors resize-none"
-                placeholder="Tell me about your project or inquiry..."
-              />
-              {touched.purpose && errors.purpose && (
-                <p className="text-xs text-red-400 mt-1">{errors.purpose}</p>
-              )}
-            </div>
-
-            {status === "error" && (
-              <p className="text-sm text-red-400 text-center">
-                Something went wrong. Please try again.
-              </p>
-            )}
-
-            <button
-              type="submit"
-              disabled={status === "loading"}
-              className="w-full py-3 rounded-lg bg-accent text-white font-medium text-sm hover:bg-accent-hover transition-colors disabled:opacity-50 cursor-pointer"
+          <div className="flex items-center justify-center gap-6">
+            <a
+              href={SITE_CONFIG.socials.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="opacity-70 hover:opacity-100 hover:scale-110 transition-all duration-200"
+              aria-label="Visit LinkedIn profile"
             >
-              {status === "loading" ? "Sending..." : "Send Message"}
-            </button>
-          </form>
-        )}
+              <Image src="/assets/linkedin.png" alt="LinkedIn" width={32} height={32} />
+            </a>
+            <a
+              href={SITE_CONFIG.socials.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="opacity-70 hover:opacity-100 hover:scale-110 transition-all duration-200"
+              aria-label="Visit Instagram profile"
+            >
+              <Image src="/assets/instagram.png" alt="Instagram" width={32} height={32} />
+            </a>
+          </div>
+        </div>
       </div>
     </section>
   );

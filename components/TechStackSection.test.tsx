@@ -10,34 +10,28 @@ describe("TechStackSection", () => {
 
   it("renders section title", () => {
     render(<TechStackSection />);
-    expect(screen.getByText("Tech Stack")).toBeInTheDocument();
+    expect(screen.getByText("Skills & Technologies")).toBeInTheDocument();
   });
 
-  it("renders Backend Developer category", () => {
+  it("renders Business Analysis category", () => {
     render(<TechStackSection />);
-    expect(screen.getByText("Backend Developer")).toBeInTheDocument();
+    expect(screen.getByText("Business Analysis")).toBeInTheDocument();
   });
 
-  it("renders Frontend Developer category", () => {
+  it("renders Frontend category", () => {
     render(<TechStackSection />);
-    expect(screen.getByText("Frontend Developer")).toBeInTheDocument();
+    expect(screen.getByText("Frontend")).toBeInTheDocument();
   });
 
-  it("renders CI/CD & DevOps category", () => {
+  it("renders Backend category", () => {
     render(<TechStackSection />);
-    expect(screen.getByText("CI/CD & DevOps")).toBeInTheDocument();
+    expect(screen.getByText("Backend")).toBeInTheDocument();
   });
 
-  it("renders tech items with labels", () => {
+  it("renders skill items", () => {
     render(<TechStackSection />);
     expect(screen.getByText("Node.js")).toBeInTheDocument();
     expect(screen.getByText("Docker")).toBeInTheDocument();
     expect(screen.getByText("Flutter")).toBeInTheDocument();
-  });
-
-  it("renders progress percentage labels", () => {
-    render(<TechStackSection />);
-    const percentages = screen.getAllByText(/^\d+%$/);
-    expect(percentages.length).toBeGreaterThanOrEqual(5);
   });
 });

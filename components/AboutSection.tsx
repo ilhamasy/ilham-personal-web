@@ -12,19 +12,19 @@ import ScrollDownArrow from "./ScrollDownArrow";
 const statCards = [
   {
     icon: Briefcase,
-    value: 4,
+    value: 6,
     suffix: "+",
     label: "Years Experience",
   },
   {
     icon: Folder,
-    value: 7,
+    value: 10,
     suffix: "+",
     label: "Enterprise Projects",
   },
   {
     icon: Building2,
-    textValue: "Banking & Fintech",
+    textValue: "Banking & Contact Center",
     label: "Industry Experience",
     isTextValue: true,
   },
@@ -133,10 +133,10 @@ export default function AboutSection() {
                 Turning Business Needs Into Digital Solutions
               </h2>
               <p className="text-sm sm:text-base text-zinc-400 leading-relaxed">
-                With 4+ years of experience, I help organizations design and
+                With 6+ years of experience, I help organizations design and
                 deliver scalable digital solutions. As an IT Business Analyst
                 and Full Stack Developer, I work across the business and
-                technology spectrum — translating complex requirements into
+                technology spectrum translating complex requirements into
                 clear, feasible, and scalable implementations for banking,
                 contact center, CRM, and customer engagement platforms.
               </p>

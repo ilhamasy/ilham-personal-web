@@ -10,7 +10,7 @@ interface NavItem {
 const navItems: NavItem[] = [
   { id: "home", label: "Home" },
   { id: "my-portfolio", label: "Featured Project" },
-  { id: "tech-stack", label: "Tech Stack" },
+  { id: "tech-stack", label: "Skills & Technologies" },
   { id: "contact-me", label: "Contact Me" },
 ];
 

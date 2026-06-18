@@ -1,6 +1,5 @@
 import { describe, it, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
 import ContactSection from "./ContactSection";
 
 describe("ContactSection", () => {
@@ -9,49 +8,38 @@ describe("ContactSection", () => {
     expect(document.getElementById("contact-me")).toBeInTheDocument();
   });
 
-  it("renders section title", () => {
+  it("renders section title with animation", () => {
     render(<ContactSection />);
-    expect(screen.getByText(/Contact Me/i)).toBeInTheDocument();
+    const headings = document.querySelectorAll("h1");
+    expect(headings.length).toBeGreaterThanOrEqual(1);
   });
 
-  it("renders name input", () => {
-    render(<ContactSection />);
-    expect(screen.getByLabelText(/name/i)).toBeInTheDocument();
-  });
-
-  it("renders email input", () => {
-    render(<ContactSection />);
-    expect(screen.getByLabelText(/email/i)).toBeInTheDocument();
-  });
-
-  it("renders purpose textarea", () => {
-    render(<ContactSection />);
-    expect(screen.getByLabelText(/purpose/i)).toBeInTheDocument();
-  });
-
-  it("renders submit button", () => {
-    render(<ContactSection />);
-    expect(screen.getByRole("button", { name: /send/i })).toBeInTheDocument();
-  });
-
-  it("shows validation errors on empty submit", async () => {
-    const user = userEvent.setup();
-    render(<ContactSection />);
-    await user.click(screen.getByRole("button", { name: /send/i }));
-    expect(screen.getByText(/name is required/i)).toBeInTheDocument();
-    expect(screen.getByText(/email is required/i)).toBeInTheDocument();
-  });
-
-  it("renders social links", () => {
+  it("renders subtitle", () => {
     render(<ContactSection />);
     expect(
-      screen.getByLabelText("Visit Instagram profile")
+      screen.getByText(/Whether you're looking for a Business Analyst/i)
     ).toBeInTheDocument();
+  });
+
+  it("renders Email me button", () => {
+    render(<ContactSection />);
+    expect(screen.getByText("Email me")).toBeInTheDocument();
+  });
+
+  it("renders social media text", () => {
+    render(<ContactSection />);
+    expect(
+      screen.getByText(/or follow my social media/i)
+    ).toBeInTheDocument();
+  });
+
+  it("renders LinkedIn and Instagram links", () => {
+    render(<ContactSection />);
     expect(
       screen.getByLabelText("Visit LinkedIn profile")
     ).toBeInTheDocument();
     expect(
-      screen.getByLabelText("Visit Gmail profile")
+      screen.getByLabelText("Visit Instagram profile")
     ).toBeInTheDocument();
   });
 });
